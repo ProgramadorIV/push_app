@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:push_app/presentation/blocs/notifications/notifications_bloc.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -10,7 +12,9 @@ class HomeScreen extends StatelessWidget {
         title: const Text('Permissions'),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              context.read<NotificationsBloc>().requestPermissions();
+            },
             icon: const Icon(Icons.settings),
           )
         ],
@@ -25,6 +29,12 @@ class _HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Column(
+      children: [
+        context.select((NotificationsBloc bloc) => Padding(
+            padding: const EdgeInsets.all(10),
+            child: Text('Status: ${bloc.state.status.name}'))),
+      ],
+    );
   }
 }
