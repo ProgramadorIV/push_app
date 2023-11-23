@@ -6,7 +6,7 @@ class NotificationsState extends Equatable {
     this.status = AuthorizationStatus.notDetermined,
   });
 
-  final List<dynamic> notifactions;
+  final List<PushMessage> notifactions;
   final AuthorizationStatus status;
 
   @override
@@ -14,7 +14,7 @@ class NotificationsState extends Equatable {
 
   NotificationsState copyWith({
     AuthorizationStatus? status,
-    List<dynamic>? notifactions,
+    List<PushMessage>? notifactions,
   }) =>
       NotificationsState(
         notifactions: notifactions ?? this.notifactions,
