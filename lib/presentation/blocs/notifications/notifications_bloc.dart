@@ -55,7 +55,6 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
   //----------------------------------------
 
   // This method is destined to handle all the notifications
-
   void handleRemoteMessage(RemoteMessage remoteMessage) {
     if (remoteMessage.notification == null) return;
 
@@ -75,6 +74,7 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
     add(NotificationRecieved(notification));
   }
 
+  //Foreground notifications listener
   void _onForegroundMessage() {
     FirebaseMessaging.onMessage.listen(handleRemoteMessage);
   }
